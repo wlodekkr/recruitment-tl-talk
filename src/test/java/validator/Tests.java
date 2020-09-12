@@ -3,6 +3,7 @@ package validator;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,11 +11,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Tests {
 	private static CreditCardVendorsReader reader = new CreditCardVendorsReader();
-	private static ArrayList<CreditCardVendor> vendors = reader.returnVendorArray();
+	private static List<CreditCardVendor> vendors = reader.returnVendorArray();
 	private static CreditCardValidator validator = new CreditCardValidator();
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	private static CreditCardVendor vendorMasterCard = vendors.get(1);
-	
 
 	@Test
 	public void testLengthOfNumberWhenCorrect() {

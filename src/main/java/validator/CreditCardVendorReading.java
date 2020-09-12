@@ -1,7 +1,7 @@
 package validator;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface CreditCardVendorReading {
-	public ArrayList<CreditCardVendor> returnVendorArray();
+	List<CreditCardVendor> returnVendorArray();
 }
