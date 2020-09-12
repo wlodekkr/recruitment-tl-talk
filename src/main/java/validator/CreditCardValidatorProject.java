@@ -3,41 +3,45 @@ package validator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.lang.System.err;
+import static java.lang.System.out;
 
 public class CreditCardValidatorProject {
 	
 	private static CreditCardVendorsReader reader = new CreditCardVendorsReader();
-	private static ArrayList<CreditCardVendor> vendors = reader.returnVendorArray();
+	private static List<CreditCardVendor> vendors = reader.returnVendorArray();
 	private static CreditCardValidator validator = new CreditCardValidator();
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public static void main(String[] args) {
-        System.out.println("CREDIT CARD VALIDATOR\n");
+        out.println("CREDIT CARD VALIDATOR\n");
         
         int vendorsLength = vendors.size();
-        int selected = 0;
+        int selected;
         
         while (true){
         	printMenu();
         	try{
                 selected = Integer.parseInt(br.readLine());
                 if(selected < vendorsLength){
-    	        	System.out.println("Type your credit card number:");
+    	        	out.println("Type your credit card number:");
     	        	String cardNumber;
     				try {
     					cardNumber = br.readLine();
     					boolean result = validator.checkValidity(vendors.get(selected), cardNumber);
     					printResultOfValidation(result);
     				} catch (IOException e) {
-    					System.out.println("Something went wrong!\n Please retry the process");
+    					out.println("Something went wrong!\n Please retry the process");
     				}
     	        	
             	}else{
             		break;
             	}
             }catch(NumberFormatException | IOException e){
-                System.err.println("Invalid Format!");
+                err.println("Invalid Format!");
             }
         	
         }
@@ -45,16 +49,18 @@ public class CreditCardValidatorProject {
     }
 	
 	static private void printMenu(){
-		System.out.println("Select your card vendor from list below("+vendors.size()+" exits):");
-    	for (int i = 0;i<vendors.size();++i)
-    		System.out.println(i+" "+vendors.get(i).toString());
+		out.println("Select your card vendor from list below("+vendors.size()+" exits):");
+
+		IntStream.range(0, vendors.size())
+				.mapToObj(i -> i + " " + vendors.get(i).toString())
+				.forEach(out::println);
 	}
 	
 	static private void printResultOfValidation(boolean result){
 		if(result){
-    		System.out.println("\n\nCard number is valid.\n");
+    		out.println("\n\nCard number is valid.\n");
     	}else{
-    		System.out.println("\n\nCard number is invalid!\n");
+    		out.println("\n\nCard number is invalid!\n");
     	}
 	}
 }
