@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Tests {
+public class CreditCardValidationTests {
 	private static CreditCardVendorsReader reader = new CreditCardVendorsReader();
 	private static List<CreditCardVendor> vendors = reader.returnVendorArray();
 	private static CreditCardValidator validator = new CreditCardValidator();
