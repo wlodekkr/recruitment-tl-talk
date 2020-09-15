@@ -1,4 +1,6 @@
-package validator;
+package validator.logic;
+
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+@Component
 public class CreditCardVendorsReader implements CreditCardVendorReading {
 
     public static final String CARDS_CONFIG = "Base_of_credit_card_vendors.txt";
