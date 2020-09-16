@@ -1,5 +1,6 @@
 package validator.logic;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -18,8 +19,10 @@ public class CreditCardVendorsReader implements CreditCardVendorReading {
 
     @Override
     public List<CreditCardVendor> returnVendorArray() {
+        ClassPathResource resource = new ClassPathResource(CARDS_CONFIG);
+
         try {
-            return Files.lines(Path.of(CARDS_CONFIG))
+            return Files.lines(Path.of(resource.getURI()))
                     .map(line -> line.split(" "))
                     .map(values -> {
                         String vendorName = values[0];
