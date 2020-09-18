@@ -1,25 +1,25 @@
 package validator;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class CreditCardVendor {
 	private String name;
-	private List<Integer> numberOfChars;
-	private List<String> IIN;
+	private ArrayList<Integer> numberOfChars;
+	private ArrayList<String> IIN;
 	
 	public String getName(){
 		return name;
 	}
 	
-	public List<Integer> getNumberOfChars(){
+	public ArrayList<Integer> getNumberOfChars(){
 		return numberOfChars;
 	}
 	
-	public List<String> getIIN(){
+	public ArrayList<String> getIIN(){
 		return IIN;
 	}
 	
-	public CreditCardVendor(String vendorName, List<Integer> charsNumbers, List<String> masks){
+	public CreditCardVendor(String vendorName, ArrayList<Integer> charsNumbers, ArrayList<String> masks){
 		name = vendorName;
 		numberOfChars = charsNumbers;
 		IIN = masks;
