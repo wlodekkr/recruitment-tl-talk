@@ -14,6 +14,7 @@ public class CreditCardValidationTests {
 	private static CreditCardVendorsReader reader = new CreditCardVendorsReader();
 	private static List<CreditCardVendor> vendors = reader.returnVendorArray();
 	private static CreditCardValidator validator = new CreditCardValidator();
+	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 	private static CreditCardVendor vendorMasterCard = vendors.stream()
 			.collect(Collectors.toMap(CreditCardVendor::getName, Function.identity()))
