@@ -3,8 +3,6 @@ package validator;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,10 +13,7 @@ public class Tests {
 	private static List<CreditCardVendor> vendors = reader.returnVendorArray();
 	private static CreditCardValidator validator = new CreditCardValidator();
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-	private static CreditCardVendor vendorMasterCard = vendors.stream()
-			.collect(Collectors.toMap(CreditCardVendor::getName, Function.identity()))
-			.get("MasterCard");
+	private static CreditCardVendor vendorMasterCard = vendors.get(1);
 
 	private void checkCardValidity(String number, boolean valid) {
 		assertEquals(valid, validator.checkValidity(vendorMasterCard, number));
