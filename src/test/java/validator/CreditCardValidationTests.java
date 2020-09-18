@@ -1,22 +1,23 @@
-package validator.logic;
+package validator;
 
-import org.junit.jupiter.api.Test;
-
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreditCardValidatorTest {
+public class CreditCardValidationTests {
 	private static CreditCardVendorsReader reader = new CreditCardVendorsReader();
 	private static List<CreditCardVendor> vendors = reader.returnVendorArray();
 	private static CreditCardValidator validator = new CreditCardValidator();
 
-	public static final String MASTER_CARD = "MasterCard";
 	private static CreditCardVendor vendorMasterCard = vendors.stream()
 			.collect(Collectors.toMap(CreditCardVendor::getName, Function.identity()))
-			.get(MASTER_CARD);
+			.get("MasterCard");
 
 	private void checkCardValidity(String number, boolean valid) {
 		assertEquals(valid, validator.checkValidity(vendorMasterCard, number));

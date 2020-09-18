@@ -1,9 +1,4 @@
-package validator.main;
-
-import validator.logic.CreditCardChecking;
-import validator.logic.CreditCardValidator;
-import validator.logic.CreditCardVendor;
-import validator.logic.CreditCardVendorsReader;
+package validator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +13,7 @@ public class CreditCardValidatorProject {
 	
 	private static CreditCardVendorsReader reader = new CreditCardVendorsReader();
 	private static List<CreditCardVendor> vendors = reader.returnVendorArray();
-	private static CreditCardChecking validator = new CreditCardValidator();
+	private static CreditCardValidator validator = new CreditCardValidator();
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public static void main(String[] args) {

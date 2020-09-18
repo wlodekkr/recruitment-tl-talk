@@ -1,12 +1,9 @@
-package validator.logic;
-
-import org.springframework.stereotype.Component;
+package validator;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-@Component
 public class CreditCardValidator implements CreditCardChecking {
 
     @Override

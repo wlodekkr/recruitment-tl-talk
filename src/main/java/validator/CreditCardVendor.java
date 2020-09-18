@@ -1,4 +1,4 @@
-package validator.logic;
+package validator;
 
 import java.util.List;
 
