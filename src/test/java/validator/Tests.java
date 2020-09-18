@@ -2,6 +2,7 @@ package validator;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -15,38 +16,40 @@ public class Tests {
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	private static CreditCardVendor vendorMasterCard = vendors.get(1);
 
-	private void checkCardValidity(String number, boolean valid) {
-		assertEquals(valid, validator.checkValidity(vendorMasterCard, number));
-	}
-
 	@Test
 	public void testLengthOfNumberWhenCorrect() {
-		checkCardValidity("5584239583699571", true);
+		String number = "5584239583699571";
+		assertEquals(true, validator.checkValidity(vendorMasterCard, number));
 	}
-
+	
 	@Test
 	public void testLengthOfNumberWhenIncorrect() {
-		checkCardValidity("55842395", false);
+		String number = "55842395";
+		assertEquals(false, validator.checkValidity(vendorMasterCard, number));
 	}
 	
 	@Test
 	public void testIINWhenCorrect() {
-		checkCardValidity("5584239583699571", true);
+		String number = "5584239583699571";
+		assertEquals(true, validator.checkValidity(vendorMasterCard, number));
 	}
 	
 	@Test
 	public void testIINWhenIncorrect() {
-		checkCardValidity("7784239583699571", false);
+		String number = "7784239583699571";
+		assertEquals(false, validator.checkValidity(vendorMasterCard, number));
 	}
 	
 	@Test
 	public void testLuhnAlghoritmWhenCorrect() {
-		checkCardValidity("5584239583699571", true);
+		String number = "5584239583699571";
+		assertEquals(true, validator.checkValidity(vendorMasterCard, number));
 	}
 	
 	@Test
 	public void testLuhnAlghoritmWhenIncorrect() {
-		checkCardValidity("5584239583611111", false);
+		String number = "5584239583611111";
+		assertEquals(false, validator.checkValidity(vendorMasterCard, number));
 	}
 
 }
