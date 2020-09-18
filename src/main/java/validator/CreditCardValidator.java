@@ -8,7 +8,7 @@ public class CreditCardValidator implements CreditCardChecking {
 
     @Override
     public boolean checkValidity(CreditCardVendor ccv, String number) {
-        List<Integer> validLengths = ccv.getValidLengths();
+        List<Integer> validLengths = ccv.getPossibleLengths();
         List<String> validMasks = ccv.getIIN();
 
         return checkLengthCorrectness(number, validLengths) &&
@@ -28,15 +28,15 @@ public class CreditCardValidator implements CreditCardChecking {
 
     private boolean checkLuhnAlgorithmCorrectness(String cardNumber) {
         String[] cardDigits = cardNumber.split("");
-        int[] algorithmicCardDigits = new int[cardDigits.length];
+        int[] algorytmicCardDigits = new int[cardDigits.length];
 
         IntStream.range(0, cardDigits.length)
-                .forEach(i -> algorithmicCardDigits[i] = Integer.parseInt(cardDigits[i]));
+                .forEach(i -> algorytmicCardDigits[i] = Integer.parseInt(cardDigits[i]));
 
-        IntStream.range(0, algorithmicCardDigits.length)
-                .forEach(i -> algorithmicCardDigits[i] = (i % 2 == 0) ? 2 * algorithmicCardDigits[i] : algorithmicCardDigits[i]);
+        IntStream.range(0, algorytmicCardDigits.length)
+                .forEach(i -> algorytmicCardDigits[i] = (i % 2 == 0) ? 2 * algorytmicCardDigits[i] : algorytmicCardDigits[i]);
 
-        int sum = Arrays.stream(algorithmicCardDigits)
+        int sum = Arrays.stream(algorytmicCardDigits)
                 .map(j -> (j < 10) ? j : (j % 10 + j / 10)).sum();
 
         return sum % 10 == 0;
