@@ -1,7 +1,5 @@
 package validator.main;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import validator.logic.CreditCardChecking;
 import validator.logic.CreditCardValidator;
 import validator.logic.CreditCardVendor;
@@ -17,24 +15,20 @@ import static java.lang.System.err;
 import static java.lang.System.out;
 
 public class CreditCardValidatorProject {
-
+	
+	private static CreditCardVendorsReader reader = new CreditCardVendorsReader();
+	private static List<CreditCardVendor> vendors = reader.returnVendorArray();
+	private static CreditCardChecking validator = new CreditCardValidator();
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public static void main(String[] args) {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext("validator.logic");
-
         out.println("CREDIT CARD VALIDATOR\n");
-
-		CreditCardVendorsReader reader = ctx.getBean(CreditCardVendorsReader.class);
-
-		List<CreditCardVendor> vendors = reader.returnVendorArray();
-		int vendorsLength = vendors.size();
+        
+        int vendorsLength = vendors.size();
         int selected;
-
-		CreditCardChecking validator = ctx.getBean(CreditCardChecking.class);
-
+        
         while (true){
-        	printMenu(vendors);
+        	printMenu();
         	try{
                 selected = Integer.parseInt(br.readLine());
                 if(selected < vendorsLength){
@@ -59,7 +53,7 @@ public class CreditCardValidatorProject {
         
     }
 	
-	static private void printMenu(List<CreditCardVendor> vendors){
+	static private void printMenu(){
 		out.println("Select your card vendor from list below("+vendors.size()+" exits):");
 
 		IntStream.range(0, vendors.size())
